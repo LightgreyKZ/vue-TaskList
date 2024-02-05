@@ -1,9 +1,8 @@
 <template>
     <div>
-        <h2>Список1 задач5:</h2>
-        <p>{{ mytasks }}</p>
-        <p>Count: {{ countTasks }}</p>
-        <!-- <Tasks></Tasks> -->
+        <h2>Список задач:</h2>
+        <Tasks :tasks="mytasks">
+        </Tasks>
     </div>
 </template>
 
@@ -16,32 +15,27 @@ export default {
             mytasks: [
                 {
                     id: '1',
-                    title: '1',
-                    description: '1',
-                    completed: '1'
+                    title: 'Task1',
+                    description: 'Desc1',
+                    completed: false
                 },
                 {
                     id: '2',
-                    title: '2',
-                    description: '2',
-                    completed: '2'
+                    title: 'Task2',
+                    description: 'Desc2',
+                    completed: true
                 },
                 {
                     id: '3',
-                    title: '3',
-                    description: '3',
-                    completed: '3'
+                    title: 'Task3',
+                    description: 'Desc3',
+                    completed: false
                 }
             ]
         }
     },
     components: {
         Tasks
-    },
-    computed: {
-        countTasks() {
-            return this.mytasks.length;
-        }
     }
 }
 </script>
