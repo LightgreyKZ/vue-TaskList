@@ -4,10 +4,13 @@
     completed. -->
     <div>
     <h1>Hello from component TaskList!</h1>
-    <TaskCard v-for="task in tasks" :key="task.id" :title="task.title" :desc="task.description">
+    <div class="container_tasks">
+    <TaskCard v-for="(task, index) in tasks" :key="task.id" :title="task.title" :desc="task.description" :index="index" :iscompleted="task.completed" @del="delTask" @sendStatus="SetStatus">
 
     </TaskCard>
-    <p>Всего задач: {{ countTasks }}</p>
+    </div>
+    <p>Total tasks: {{ countTasks }}</p>
+    <p>Completed tasks: {{ countTasksDone }}</p>
     </div>
 </template>
 
@@ -21,11 +24,33 @@ export default {
     computed: {
         countTasks() {
             return this.tasks.length;
+        },
+        countTasksDone() {
+            return this.tasks.filter(item => item.completed === true).length;
         }
     },
     components: {
     TaskCard
-}
+    },
+    methods: {
+        delTask(id) {
+            this.$emit('del', id)
+        },
+        SetStatus(ischeck, index) {
+            this.$emit('sendStatus', ischeck, index);
+        }
+    }
 }
 
 </script>
+
+<style scoped>
+.container_tasks {
+    display: flex;
+    justify-content:space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+</style>
