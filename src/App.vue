@@ -3,6 +3,10 @@
         <h2>Список задач:</h2>
         <Tasks :tasks="mytasks">
         </Tasks>
+
+        <!-- <TaskCard v-for="item in mytasks" :key="item.id" :title="item.title" :description="item.description">
+
+        </TaskCard> -->
     </div>
 </template>
 
@@ -15,7 +19,7 @@ export default {
             mytasks: [
                 {
                     id: '1',
-                    title: 'Task1',
+                    title: 'Task1111',
                     description: 'Desc1',
                     completed: false
                 },
@@ -35,8 +39,8 @@ export default {
         }
     },
     components: {
-        Tasks
-    }
+    Tasks
+}
 }
 </script>
 
