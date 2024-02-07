@@ -7,7 +7,7 @@
     <!-- 7. Добавьте возможность отметки выполнения задачи. В компоненте "Task"
     добавьте чекбокс, который будет менять статус completed соответствующей
     задачи. -->
-    <div :class="SetClass(index)" class = 'cardCommon'>
+    <div :class="SetClass" class = 'cardCommon' >
         <span class="cross" @click="delTask">✖</span>
         <h4>{{ title }}</h4>
         <p>{{ desc }}</p>
@@ -26,17 +26,20 @@ export default {
     },
     props: ['title', 'desc', 'index', 'iscompleted'],
     methods: {
-        SetClass(index) {
-            return {
-                'taskcardYellow'    : this.index%2 === 0,
-                'taskcardPink'      : this.index%2 === 1
-            }
-        },
         delTask() {
             this.$emit('del', this.index);
         },
         SetStatus() {
             this.$emit('sendStatus', this.ischeck, this.index);
+        }
+    },
+    computed: {
+        SetClass: function() {
+            return {
+                'taskcardYellow'    : this.index%2 === 0,
+                'taskcardPink'      : this.index%2 === 1,
+                'finished'          : this.iscompleted
+            }
         }
     }
 }
@@ -66,6 +69,11 @@ export default {
 .taskcardPink {
   background: rgba(239, 155, 238, 0.97);
   transform: rotate(-2.5deg);
+}
+
+.finished {
+  background:rgba(0, 189, 41, 0.97);
+  transform: rotate(0);
 }
 
 /* Стили для крестика */
