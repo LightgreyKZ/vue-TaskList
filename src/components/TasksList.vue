@@ -3,14 +3,18 @@
     массиве tasks. Каждая задача должна иметь свойства: id, title, description и
     completed. -->
     <div>
-    <h1>Hello from component TaskList!</h1>
+    <!-- <h1>Hello from component TaskList!</h1> -->
+    <p>Total tasks: {{ countTasks }}</p>
+    <p>Completed tasks: {{ countTasksDone }}</p>
     <div class="container_tasks">
     <TaskCard v-for="(task, index) in tasks" :key="task.id" :title="task.title" :desc="task.description" :index="index" :iscompleted="task.completed" @del="delTask" @sendStatus="SetStatus">
+        
+        <p><b>Task details:</b></p>
+        <p>{{ task.description }}</p>
 
     </TaskCard>
     </div>
-    <p>Total tasks: {{ countTasks }}</p>
-    <p>Completed tasks: {{ countTasksDone }}</p>
+
     </div>
 </template>
 
@@ -50,7 +54,17 @@ export default {
     justify-content:space-around;
     flex-direction: row;
     flex-wrap: wrap;
+}
 
+p {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color:  rgb(255, 255, 255);
+    margin: 0;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 </style>

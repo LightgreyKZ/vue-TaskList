@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Список задач:</h2>
+        <h2>My task list</h2>
         <div class="board">
         <Tasks :tasks="mytasks" @del="delTask" @sendStatus="SetStatus">
         </Tasks>
@@ -22,20 +22,26 @@ export default {
             mytasks: [
                 {
                     id: 1,
-                    title: 'Task1111',
-                    description: 'Desc1',
+                    title: 'Meet Jane',
+                    description: 'Train will arrive at 8 a.m.',
                     completed: false
                 },
                 {
                     id: 2,
-                    title: 'Task2',
-                    description: 'Desc2',
-                    completed: true
+                    title: 'Go to school',
+                    description: 'Preparing for celebrate New Year.',
+                    completed: false
                 },
                 {
                     id: 3,
-                    title: 'Task3',
-                    description: 'Desc3',
+                    title: 'Have lunch with Ben',
+                    description: 'Do not forget take gift for him',
+                    completed: false
+                },
+                {
+                    id: 4,
+                    title: 'Go cinema at 7 p.m.',
+                    description: 'Try dont be late',
                     completed: false
                 }
             ]
@@ -47,6 +53,7 @@ export default {
     },
     methods: {
         AddTask(title, desc) {
+        if (title.length > 0 && desc.length > 0) {
         if (this.mytasks.length > 0) 
         {this.lastid = this.mytasks[this.mytasks.length-1].id}
         console.log(this.mytasks.length);
@@ -57,6 +64,9 @@ export default {
           description: desc,
           completed: false
           });
+        }
+        else 
+        return 0;
       },
       delTask(id) {
         // console.log(id);
@@ -80,13 +90,16 @@ export default {
 
 * {
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 .board {
-    background-image: url('../src/assets/images/empty-room-with-chairs-and-desks.jpg');
+    background-image: url('../src/assets/images/paymo-JXyY3jRV9oI-unsplash.jpg');
     background-position:left;
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 600px;
+    margin-bottom: 1rem;
 }
 
 </style>
